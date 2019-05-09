@@ -15,7 +15,32 @@ export default class App extends Component<Props> {
     path: null,
   }
   componentWillMount() {
-    //nodejs.start('index.js');
+    // nodejs.start('index.js');
+
+    // NOTE2L
+    // 
+    // Just at the moment if I uncomment the above
+    // I get this error:
+    // ----
+    // TypeError: null is not an object (evaluating 'RNNodeJsMobile.startNodeProject')
+
+    // This error is located at:
+    //     in App (at renderApplication.js:35)
+    //     in RCTView (at View.js:45)
+    //     in View (at AppContainer.js:98)
+    //     in RCTView (at View.js:45)
+    //     in View (at AppContainer.js:115)
+    //     in AppContainer (at renderApplication.js:34)
+    // start
+    //     index.js:17:17
+    // componentWillMount
+    //     ReactFabric-prod.js:7014:4
+    // callComponentWillMount
+    //     Easing.js:152:23
+    // mountClassInstance
+    //     I18nManager.js:20:79
+    // ----
+
   }
   get = (i) => {
     fetch(`${uri}/${i}`)
