@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mkdirp": "^0.5.1",
+    "scuttlebot": "git://github.com/luandro/scuttlebot",
+    "sodium-native-prebuilds-nodejs-mobile": "^2.1.6-8",
+    "ssb-about": "^0.1.2",
+    "ssb-backlinks": "^0.7.1",
+    "ssb-blobs": "^1.1.5",
+    "ssb-config": "^2.2.0",
+    "ssb-contacts": "0.0.2",
+    "ssb-friends": "^2.4.0",
+    "ssb-keys": "^7.0.14",
+    "ssb-private": "^0.2.1",
+    "ssb-query": "^2.0.1",
+    "ssb-serve-blobs": "^1.0.0",
+    "ssb-sort": "^1.1.0",
+    "ssb-threads": "^1.1.0"
+  }
+}
