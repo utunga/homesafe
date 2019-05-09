@@ -25,12 +25,18 @@ export default class App extends Component<Props> {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Scuttlebot on NodeJS Mobile!
-        </Text>
-        <Button title="Who am I"  />
-       
+        <View style={styles.container}>
+          <Text style={styles.welcome}>
+            Welcome to Scuttlebot on NodeJS Mobile!
+          </Text>
+          <Button title="Who am I"
+            onPress={() => this.get('whoami')}
+          />
+          <Text>{JSON.stringify(this.state.whoami)}</Text>
+          <Button title="Path"
+            onPress={() => this.get('path')}
+          />
+          <Text>{JSON.stringify(this.state.path)}</Text>
       </View>
     );
   }
