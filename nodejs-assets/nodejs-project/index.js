@@ -1,42 +1,26 @@
 const express = require('express')
-const ssbKeys = require('ssb-keys')
-const fs = require('fs')
-const os = require('os')
-const path = require('path')
-const mkdirp = require('mkdirp')
-const manifest = require('./manifest')
 const app = express()
+const ssbServer = require('./src/ssb')
 
-// Hack until appDataDir plugin comes out
-let  writablePath = path.join(__dirname, '..');
-// iOS
-if (process.platform==='ios') {
-  writablePath = path.join(os.homedir(), 'Documents')
-}
+process.env = process.env || {};
+process.env.CHLORIDE_JS = 'yes'
 
-const ssbPath = path.resolve(writablePath, '.ssb');
-if (!fs.existsSync(ssbPath)) {
-  mkdirp.sync(ssbPath);
-}
+// var rn_bridge = require('rn-bridge');
 
-const keys = ssbKeys.loadOrCreateSync(path.join(ssbPath, '/secret'));
-const config = require('ssb-config/inject')();
-config.path = ssbPath;
-config.keys = keys;
-config.manifest = manifest;
+// Echo every message received from react-native.
+// rn_bridge.channel.on('message', (msg) => {
+//   rn_bridge.channel.send(msg);
+// } );
 
-const startSsbServer = () => new Promise((resolve, reject) => {
-  console.log('Starting SSB SERVER')
-  const sbot = require('scuttlebot/index')
-    .use(require('scuttlebot/plugins/plugins'))
-    .use(require('scuttlebot/plugins/master'))
-    .use(require('scuttlebot/plugins/replicate'))
-    .call(null, config)
-  resolve(sbot)
-})
+// // Inform react-native node is initialized.
+// rn_bridge.channel.send("Node was initialized.");
 
-startSsbServer()
+ssbServer()
   .then(sbot => {
+    // rn_bridge.channel.on('message', (msg) => {
+    //   if (msg === '')
+    //   rn_bridge.channel.send(msg);
+    // })
     app.get('/whoami', (req, res) => {
       sbot.whoami((err, info) => {
         res.json(info.id)

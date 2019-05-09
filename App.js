@@ -15,7 +15,7 @@ export default class App extends Component<Props> {
     path: null,
   }
   componentWillMount() {
-    // nodejs.start('index.js');
+    nodejs.start('index.js');
 
     // NOTE2L
     // 
